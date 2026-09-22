@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#09090b">
+  <meta name="description" content="Auvryn — laboratorio digital para ideas, software y experiencias web.">
+  <title>Auvryn — Construyendo lo que sigue</title>
+  <style>
+    :root{--bg:#09090b;--panel:#111115;--text:#f4f4f5;--muted:#a1a1aa;--line:#27272a;--violet:#8b5cf6;--cyan:#22d3ee;--green:#86efac}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.5;overflow-x:hidden}
+    a{color:inherit;text-decoration:none}.noise{position:fixed;inset:0;pointer-events:none;opacity:.035;z-index:5;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E")}
+    .glow{position:fixed;width:38rem;height:38rem;border-radius:50%;background:radial-gradient(circle,rgba(139,92,246,.14),transparent 66%);transform:translate(-50%,-50%);pointer-events:none;z-index:-1}
+    .wrap{width:min(1120px,calc(100% - 40px));margin:auto}.nav{height:82px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.08)}
+    .brand{display:flex;align-items:center;gap:11px;font-weight:760;letter-spacing:.08em}.mark{width:28px;height:28px;border:1px solid #52525b;border-radius:9px;display:grid;place-items:center;background:linear-gradient(145deg,#18181b,#0c0c0f)}.mark:after{content:"";width:9px;height:9px;border-radius:3px;background:linear-gradient(135deg,var(--violet),var(--cyan));box-shadow:0 0 18px rgba(34,211,238,.65)}
+    .navlinks{display:flex;gap:28px;color:var(--muted);font-size:.92rem}.navlinks a:hover{color:#fff}.status{display:flex;align-items:center;gap:8px;color:#d4d4d8;font-size:.86rem}.dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 12px rgba(134,239,172,.7)}
+    .hero{min-height:calc(100vh - 82px);display:grid;align-content:center;padding:88px 0 70px;position:relative}.eyebrow{display:flex;align-items:center;gap:12px;color:#c4b5fd;text-transform:uppercase;letter-spacing:.16em;font-size:.72rem;font-weight:700}.eyebrow:before{content:"";width:32px;height:1px;background:#8b5cf6}
+    h1{font-size:clamp(3.5rem,9.3vw,8.7rem);line-height:.88;letter-spacing:-.067em;margin:26px 0 36px;max-width:980px}.fade{color:#71717a}.gradient{background:linear-gradient(90deg,#fff 5%,#c4b5fd 48%,#67e8f9);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .hero-bottom{display:flex;justify-content:space-between;align-items:flex-end;gap:30px}.intro{max-width:600px;color:#b4b4bd;font-size:clamp(1.08rem,2vw,1.35rem);line-height:1.65}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}.btn{display:inline-flex;align-items:center;gap:11px;padding:13px 18px;border:1px solid var(--line);border-radius:999px;font-weight:650;font-size:.91rem;transition:.25s}.btn.primary{background:#f4f4f5;color:#09090b;border-color:#f4f4f5}.btn:hover{transform:translateY(-2px);border-color:#71717a}.btn.primary:hover{background:#fff;box-shadow:0 10px 30px rgba(255,255,255,.12)}
+    .scroll{writing-mode:vertical-rl;text-transform:uppercase;letter-spacing:.18em;color:#52525b;font-size:.65rem;display:flex;align-items:center;gap:12px}.scroll:after{content:"";height:56px;width:1px;background:#3f3f46}
+    section{padding:120px 0;border-top:1px solid var(--line)}.section-head{display:grid;grid-template-columns:1fr 2fr;gap:50px;margin-bottom:64px}.kicker{color:#71717a;font-size:.78rem;text-transform:uppercase;letter-spacing:.14em}.section-head h2{font-size:clamp(2.2rem,5vw,4.4rem);line-height:1.02;letter-spacing:-.045em;margin:0;font-weight:680}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.card{min-height:310px;padding:28px;border:1px solid var(--line);border-radius:22px;background:linear-gradient(145deg,rgba(24,24,27,.76),rgba(12,12,15,.78));display:flex;flex-direction:column;justify-content:space-between;transition:.3s}.card:hover{border-color:#52525b;transform:translateY(-5px)}.num{font-variant-numeric:tabular-nums;color:#52525b;font-size:.8rem}.icon{width:44px;height:44px;border:1px solid #3f3f46;border-radius:14px;display:grid;place-items:center;color:#c4b5fd;font-size:1.15rem}.card h3{font-size:1.55rem;margin:24px 0 10px;letter-spacing:-.025em}.card p{margin:0;color:var(--muted);line-height:1.65;font-size:.95rem}
+    .statement{display:grid;grid-template-columns:1.45fr .55fr;gap:80px;align-items:end}.statement blockquote{margin:0;font-size:clamp(2.1rem,5vw,4.8rem);line-height:1.08;letter-spacing:-.047em}.statement p{color:var(--muted);margin:0 0 6px;line-height:1.8}
+    .signal{position:relative;overflow:hidden}.signal:before{content:"";position:absolute;inset:auto -10% -70% 35%;height:620px;background:radial-gradient(circle,rgba(34,211,238,.12),transparent 65%)}.project{border:1px solid var(--line);border-radius:28px;padding:clamp(28px,6vw,70px);background:#0d0d10;position:relative;overflow:hidden}.project:after{content:"A";position:absolute;right:-.04em;bottom:-.32em;font-size:24rem;font-weight:800;color:rgba(255,255,255,.018);line-height:1}.project-meta{display:flex;gap:12px;align-items:center;color:#a1a1aa;font-size:.8rem;text-transform:uppercase;letter-spacing:.12em}.project h2{font-size:clamp(2.8rem,7vw,6.4rem);line-height:.95;letter-spacing:-.06em;margin:45px 0 28px;max-width:850px}.project p{max-width:600px;color:#a1a1aa;font-size:1.08rem;line-height:1.7}.pulse{width:8px;height:8px;border-radius:50%;background:#facc15;animation:pulse 2s infinite}@keyframes pulse{50%{box-shadow:0 0 0 8px rgba(250,204,21,0)}}
+    footer{padding:42px 0}.foot{display:flex;justify-content:space-between;align-items:center;color:#71717a;font-size:.85rem}.foot a:hover{color:#fff}.monogram{color:#d4d4d8;font-weight:750;letter-spacing:.12em}
+    .reveal{opacity:0;transform:translateY(20px);transition:opacity .75s ease,transform .75s ease}.reveal.show{opacity:1;transform:none}
+    @media(max-width:800px){.navlinks{display:none}.hero{padding-top:60px}.hero-bottom{align-items:flex-start}.scroll{display:none}.section-head,.statement{grid-template-columns:1fr;gap:28px}.grid{grid-template-columns:1fr}.card{min-height:245px}section{padding:86px 0}.foot{align-items:flex-start;gap:20px;flex-direction:column}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}.pulse{animation:none}.glow{display:none}}
+  </style>
+</head>
+<body>
+  <div class="noise"></div><div class="glow" id="glow"></div>
+  <header class="wrap nav">
+    <a class="brand" href="#top" aria-label="Auvryn, inicio"><span class="mark"></span>AUVRYN</a>
+    <nav class="navlinks" aria-label="Principal"><a href="#enfoque">Enfoque</a><a href="#principio">Principio</a><a href="#ahora">Ahora</a></nav>
+    <span class="status"><span class="dot"></span>En construcción</span>
+  </header>
+  <main id="top">
+    <section class="hero wrap" style="border-top:0">
+      <div class="eyebrow">Laboratorio digital independiente</div>
+      <h1><span class="gradient">Ideas claras.</span><br><span class="fade">Software con intención.</span></h1>
+      <div class="hero-bottom">
+        <div><p class="intro">Auvryn es un espacio para convertir curiosidad en productos digitales: experiencias web, automatización y herramientas pensadas para ser útiles.</p><div class="actions"><a class="btn primary" href="#enfoque">Explorar Auvryn <span>↘</span></a><a class="btn" href="https://github.com/vibecoding-rm" target="_blank" rel="noreferrer">Ver GitHub <span>↗</span></a></div></div>
+        <span class="scroll">Descubre</span>
+      </div>
+    </section>
+    <section id="enfoque"><div class="wrap">
+      <div class="section-head reveal"><span class="kicker">01 — Enfoque</span><h2>Construir menos.<br>Resolver mejor.</h2></div>
+      <div class="grid">
+        <article class="card reveal"><div><span class="num">01</span><div class="icon">◇</div></div><div><h3>Experiencias web</h3><p>Interfaces rápidas, accesibles y con una identidad visual que se siente propia.</p></div></article>
+        <article class="card reveal"><div><span class="num">02</span><div class="icon">⌁</div></div><div><h3>Automatización</h3><p>Sistemas que reducen tareas repetitivas y dejan más espacio para decidir y crear.</p></div></article>
+        <article class="card reveal"><div><span class="num">03</span><div class="icon">△</div></div><div><h3>Productos digitales</h3><p>Prototipos enfocados que validan una idea antes de convertirla en algo mayor.</p></div></article>
+      </div>
+    </div></section>
+    <section id="principio"><div class="wrap statement reveal"><blockquote>La tecnología importa cuando vuelve una idea <span class="gradient">más simple, humana y posible.</span></blockquote><p>Auvryn nace para experimentar con criterio: entender primero, diseñar con intención y construir solo lo necesario.</p></div></section>
+    <section id="ahora" class="signal"><div class="wrap"><div class="project reveal"><div class="project-meta"><span class="pulse"></span>Estado actual — exploración</div><h2>El primer capítulo está comenzando.</h2><p>Este espacio crecerá con proyectos, aprendizajes y herramientas abiertas. Por ahora, la señal ya está encendida.</p><div class="actions"><a class="btn" href="https://github.com/vibecoding-rm" target="_blank" rel="noreferrer">Seguir el proceso <span>↗</span></a></div></div></div></section>
+  </main>
+  <footer><div class="wrap foot"><span class="monogram">AUVRYN</span><span>Hecho con intención · Montevideo · 2026</span><a href="#top">Volver arriba ↑</a></div></footer>
+  <script>
+    const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(!reduced){const glow=document.getElementById('glow');addEventListener('pointermove',e=>{glow.style.left=e.clientX+'px';glow.style.top=e.clientY+'px'})}
+    const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('show');observer.unobserve(entry.target)}}),{threshold:.12});
+    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+  </script>
+</body>
+</html>
